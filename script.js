@@ -16,6 +16,7 @@ fetch("data.json")
         const card = document.createElement("div");
         card.classList.add("extension");
         card.classList.add(theme);
+        card.setAttribute("data-id", list[i].index);
         card.innerHTML = `   <div class="logo-name">
           <img src=${list[i].logo} alt="${list[i].name}" />
           <div class="discription">
@@ -33,16 +34,18 @@ fetch("data.json")
       }
     }
 
-    function activator() {
+    function activator(isFiltered) {
       const activatorBtn = document.querySelectorAll(".activator-btn");
       activatorBtn.forEach((btn) => {
         btn.addEventListener("click", () => {
           const ExtIndex = btn.dataset.index;
           btn.classList.toggle("active");
-          if (data[ExtIndex].isActive == true) {
-            data[ExtIndex].isActive = false;
-          } else {
-            data[ExtIndex].isActive = true;
+          data[ExtIndex].isActive = !data[ExtIndex].isActive;
+          if (isFiltered) {
+            const extensionCards = document.querySelectorAll(".extension");
+            extensionCards.forEach((el) => {
+              if (el.dataset.id == ExtIndex) el.remove();
+            });
           }
         });
       });
@@ -54,17 +57,17 @@ fetch("data.json")
         btn.addEventListener("click", () => {
           const ExtIndex = btn.dataset.index;
           btn.classList.toggle("active");
-          if (data[ExtIndex].exist == true) {
-            data[ExtIndex].exist = false;
-          } else {
-            data[ExtIndex].exist = true;
-          }
+          data[ExtIndex].exist = !data[ExtIndex].exist;
+          const extensionCards = document.querySelectorAll(".extension");
+          extensionCards.forEach((el) => {
+            if (el.dataset.id == ExtIndex) el.remove();
+          });
         });
       });
     }
 
     generate_extCards(data, theme);
-    activator();
+    activator(false);
     remover();
     themeBtn.addEventListener("click", () => {
       const header = document.querySelector(".header");
@@ -101,7 +104,7 @@ fetch("data.json")
       extensions.innerHTML = "";
 
       generate_extCards(allExtensions, theme);
-      activator();
+      activator(false);
       remover();
 
       allBtn.classList.add("active");
@@ -116,7 +119,7 @@ fetch("data.json")
       extensions.innerHTML = "";
 
       generate_extCards(activeExtensions, theme);
-      activator();
+      activator(true);
       remover();
 
       allBtn.classList.remove("active");
@@ -131,7 +134,7 @@ fetch("data.json")
       extensions.innerHTML = "";
 
       generate_extCards(inActiveExtensions, theme);
-      activator();
+      activator(true);
       remover();
 
       allBtn.classList.remove("active");
