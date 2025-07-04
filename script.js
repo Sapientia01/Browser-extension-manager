@@ -62,6 +62,7 @@ fetch("data.json")
         });
       });
     }
+
     generate_extCards(data, theme);
     activator();
     remover();
@@ -85,9 +86,7 @@ fetch("data.json")
         el.classList.toggle("light");
       });
       filterer.forEach((el) => {
-        if (!el.classList.contains("active")) {
-          el.classList.toggle("light");
-        }
+        el.classList.toggle("light");
       });
 
       if (theme == "d") {
@@ -100,33 +99,41 @@ fetch("data.json")
     allBtn.addEventListener("click", () => {
       const allExtensions = data.filter((extension) => extension.exist == true);
       extensions.innerHTML = "";
+
       generate_extCards(allExtensions, theme);
       activator();
       remover();
+
       allBtn.classList.add("active");
       activeBtn.classList.remove("active");
       inactiveBtn.classList.remove("active");
     });
+
     activeBtn.addEventListener("click", () => {
       const activeExtensions = data
         .filter((extension) => extension.exist == true)
         .filter((extension) => extension.isActive == true);
       extensions.innerHTML = "";
+
       generate_extCards(activeExtensions, theme);
       activator();
       remover();
+
       allBtn.classList.remove("active");
       activeBtn.classList.add("active");
       inactiveBtn.classList.remove("active");
     });
+
     inactiveBtn.addEventListener("click", () => {
       const inActiveExtensions = data
         .filter((extension) => extension.exist == true)
         .filter((extension) => extension.isActive == false);
       extensions.innerHTML = "";
+
       generate_extCards(inActiveExtensions, theme);
       activator();
       remover();
+
       allBtn.classList.remove("active");
       activeBtn.classList.remove("active");
       inactiveBtn.classList.add("active");
