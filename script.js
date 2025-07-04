@@ -71,6 +71,7 @@ fetch("data.json")
       const extension = document.querySelectorAll(".extension");
       const removeBtns = document.querySelectorAll(".remove-btn");
       const activatorBtns = document.querySelectorAll(".activator-btn");
+      const filterer = document.querySelectorAll(".filterer");
       body.classList.toggle("light");
       header.classList.toggle("light");
       themeBtn.classList.toggle("light");
@@ -82,6 +83,11 @@ fetch("data.json")
       });
       activatorBtns.forEach((el) => {
         el.classList.toggle("light");
+      });
+      filterer.forEach((el) => {
+        if (!el.classList.contains("active")) {
+          el.classList.toggle("light");
+        }
       });
 
       if (theme == "d") {
