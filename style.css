@@ -84,6 +84,9 @@ h2 {
 .filter ul li.active {
   background-color: #db3e35;
 }
+.filter ul li.light {
+  background-color: rgba(0, 0, 0, 0.2);
+}
 
 .extensions {
   display: flex;
