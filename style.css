@@ -17,7 +17,7 @@ body {
   background: linear-gradient(180deg, #040918 0%, #091540 100%);
   background-size: cover;
   background-position: top;
-
+  padding: 0 30px;
   color: #fff;
   font-family: "Noto sans", sans-serif;
 }
@@ -27,8 +27,8 @@ body {
 }
 
 .wrapper {
-  width: 1200px;
-
+  max-width: 1200px;
+  width: 100%;
   padding: 20px 0 50px 0;
 }
 .header {
@@ -62,6 +62,7 @@ body {
 .filter {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   width: 100%;
   margin: 30px 0 20px 0;
 }
@@ -85,9 +86,9 @@ h2 {
 }
 
 .extensions {
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-  grid-template-rows: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 15px;
 }
 
@@ -96,17 +97,18 @@ h2 {
   flex-direction: column;
   justify-content: space-between;
   border: 0.5px solid greenyellow;
-  width: 390px;
+  max-width: 370px;
+  width: 100%;
   padding: 20px;
   border: 1px solid rgba(255, 255, 255, 0.7);
   border-radius: 15px;
   background-color: rgba(220, 220, 220, 0.07);
 }
 .extension img {
-  width: 70px;
+  width: 50px;
 }
 .extension p {
-  font-size: 15px;
+  font-size: 12px;
 }
 
 .extension.light {
@@ -123,7 +125,7 @@ h2 {
 }
 
 .logo-name h3 {
-  font-size: 20px;
+  font-size: 18px;
   margin: 0 0 10px 0;
 }
 
@@ -136,7 +138,7 @@ h2 {
 
 .remove-btn {
   cursor: pointer;
-  padding: 8px 17px;
+  padding: 6px 15px;
   border-radius: 20px;
   background: transparent;
   color: #fff;
@@ -163,6 +165,7 @@ h2 {
   display: flex;
   padding: 2px;
   background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(0.9);
 }
 .activator-btn.light {
   background-color: rgba(0, 0, 0, 0.2);
@@ -177,4 +180,12 @@ h2 {
   height: 16px;
   border-radius: 50%;
   background-color: #fff;
+}
+
+@media (max-width: 600px) {
+  .filter {
+    gap: 25px;
+    align-items: center;
+    flex-direction: column;
+  }
 }
